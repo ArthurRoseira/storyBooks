@@ -16,3 +16,5 @@ This application will use several Node modules, such as:
 "morgan": "^1.10.0", --> module used to log the requests
 "passport": "^0.4.1",
 "passport-google-oauth20": "^2.0.0"
+
+OBS: Static folder servers can be used with template renderer modules
