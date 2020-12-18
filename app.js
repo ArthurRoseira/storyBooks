@@ -5,7 +5,7 @@ const morgan = require ('morgan');
 const exphbs = require('express-handlebars');
 const connectDB = require('./config/db');
 const passport = require('passport');
-const session = require('express-sessions')
+const session = require('express-session')
 
 //Load Config File
 dotenv.config({path: './config/config.env'})
@@ -36,14 +36,15 @@ app.use(session({
 
 
 //Passport Middleware
-app.use(passport.initialize)
-app.use(passport.sessions)
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Static FOlder
 app.use(express.static(path.join(__dirname,'public')))
 
 
 app.use('/', require('./routes/index'))
+app.use('/auth', require('./routes/auth'))
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, console.log(`Server Running in ${process.env.NODE_ENV} mode on port ${PORT}`))
