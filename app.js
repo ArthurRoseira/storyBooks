@@ -18,6 +18,11 @@ require('./config/passport')(passport)
 //Moongose method to connect with MongoDB Atlas
 connectDB()
 const app = express()
+
+//Body Parser
+app.use(express.urlencoded({ extended: false}))
+app.use(express.json())
+
 // Using morgan to log the requests when in dev mode
 //using morgan MIddleware
 if(process.env.NODE_ENV === 'development'){
@@ -48,6 +53,7 @@ app.use(express.static(path.join(__dirname,'public')))
 
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
+app.use('/stories', require('./routes/stories'))
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, console.log(`Server Running in ${process.env.NODE_ENV} mode on port ${PORT}`))

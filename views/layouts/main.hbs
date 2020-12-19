@@ -8,6 +8,9 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
   integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
   crossorigin="anonymous" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.15.1/ckeditor.js"
+  integrity="sha512-aThGT4RJc95+zt2vrs8iMjrFpsJxcFclp7tweVls6/3cNo3GWvGvtLV576o8Kdvdf3fJhrrG3wkmoea/KJMLFQ=="
+  crossorigin="anonymous"></script>
  {{!-- Satic folder address --}}
  <link rel="stylesheet" href="/css/style.css">
  <title>StoryBooks</title>
@@ -15,6 +18,7 @@
 
 <body>
  {{> _header}}
+ {{> _add_btn}}
  <div class="container">
   {{{body}}}
  </div>
@@ -22,6 +26,12 @@
  {{!-- Navbar made with materialize, after insert the partial header, initialize materialize css js script --}}
  <script>
   M.Sidenav.init(document.querySelector('.sidenav'))
+  M.FormSelect.init(document.querySelector('#status'))
+
+  CKEDITOR.replace('body', {
+   plugins: 'wysiwygarea, toolbar, basicstyles, link'
+  })
+  //body is the textarea from the storie add form
  </script>
 </body>
 

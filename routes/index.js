@@ -13,10 +13,10 @@ router.get('/dashboard',ensureAuth, async (req,res)=>{
  //passing a variable to HTML with routes
  try{
   // .lean() transforms  Mongo document in Js object
-  const stories = await Story.find({user: req.use}).lean();
+  const stories = await Story.find({user: req.user.id}).lean();
   res.render('dashboard',{
-  name: req.user.firstName,
-  stories
+   name: req.user.firstName,
+   stories
   });
  }catch(err){
   console.log(err);
@@ -26,6 +26,5 @@ router.get('/dashboard',ensureAuth, async (req,res)=>{
 })
 
 
-
-
 module.exports = router
+
