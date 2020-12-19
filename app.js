@@ -5,7 +5,9 @@ const morgan = require ('morgan');
 const exphbs = require('express-handlebars');
 const connectDB = require('./config/db');
 const passport = require('passport');
-const session = require('express-session')
+const session = require('express-session');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session)
 
 //Load Config File
 dotenv.config({path: './config/config.env'})
@@ -31,7 +33,8 @@ app.set('view engine', '.hbs');
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection})
 }))
 
 

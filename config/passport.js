@@ -9,7 +9,26 @@ module.exports = function(passport){
   callbackURL: '/auth/google/callback'
  },
  async (accessToken, refreshToken, profile, done) =>{
-  console.log(profile);
+  //new user object need to match mongoose Schema 
+  //console.log(profile);
+  const newUser = {
+    googleId: profile.id,
+    displayName: profile.displayName,
+    firstName: profile.name.givenName,
+    lastName: profile.name.familyName,
+    image: profile.photos[0].value
+  }
+  try{
+    //try to find an existing user in DB, using Mongo query
+    let user = await User.findOne({googleId: profile.id})
+    if(user){
+      done(null,user)
+    }else{
+      user = await User.create(newUser)
+    }
+  }catch(err){
+    console.log(err);
+  }
  }) )
 
  passport.serializeUser(function(user, done) {
