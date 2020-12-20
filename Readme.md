@@ -10,7 +10,7 @@ This application will use several Node modules, such as:
 "express": "^4.17.1", --> Node Server module
 "express-handlebars": "^5.2.0", --> template renderer
 "express-session": "^1.17.1",
-"method-override": "^3.0.0", --> Allow post and put requests with Handlebars
+"method-override": "^3.0.0", --> Allow post and put requests with Handlebars forms
 "moment": "^2.29.1", --> module to format dates
 "mongoose": "^5.11.8",
 "morgan": "^1.10.0", --> module used to log the requests
@@ -42,3 +42,5 @@ app.use(passport.session())
 
 OBS 2: When using Handlebars and You need to acess a variable out of the {{#each}} loop you will need to use ../, in
 app.js you will need to use a middleware function and create a global variable passing the data that is needed
+
+OBS 3: In HTML forms can only have POST or GET request, when updating an object you need to use method override
