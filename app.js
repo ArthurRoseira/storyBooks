@@ -32,11 +32,11 @@ if(process.env.NODE_ENV === 'development'){
 
 //HandleBars Helpers
 //These are functions that will be used in handlebars, offenly to format data to show to the user
-const {formatDate, stripTags, truncate} = require('./helpers/hbs')
+const {formatDate, stripTags, truncate, editIcon} = require('./helpers/hbs')
 
 
 //Handlebars engine (template engine)
-app.engine('.hbs', exphbs({helpers:{formatDate,stripTags, truncate,},defaultLayout: 'main', extname: '.hbs'}));
+app.engine('.hbs', exphbs({helpers:{formatDate,stripTags, truncate, editIcon},defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 //Sessions
@@ -51,6 +51,14 @@ app.use(session({
 //Passport Middleware
 app.use(passport.initialize())
 app.use(passport.session())
+
+//set Global Var
+app.use(function (req, res,next){
+  //Creating a express global variable (res.locals.user, user is the name)
+  //req.user is the logged user 
+  res.locals.user = req.user || null
+  next();
+})
 
 //Static FOlder
 app.use(express.static(path.join(__dirname,'public')))

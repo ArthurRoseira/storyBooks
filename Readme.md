@@ -39,3 +39,6 @@ app.use(passport.session())
 --> Create middleware functions to protect routes
 -> Add middleware folder and create ensureAuth and ensureGuest methods
 --> Store Session in DB using connect-mongo module
+
+OBS 2: When using Handlebars and You need to acess a variable out of the {{#each}} loop you will need to use ../, in
+app.js you will need to use a middleware function and create a global variable passing the data that is needed
