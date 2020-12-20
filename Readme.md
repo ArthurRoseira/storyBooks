@@ -11,7 +11,7 @@ This application will use several Node modules, such as:
 "express-handlebars": "^5.2.0", --> template renderer
 "express-session": "^1.17.1",
 "method-override": "^3.0.0", --> Allow post and put requests with Handlebars
-"moment": "^2.29.1",
+"moment": "^2.29.1", --> module to format dates
 "mongoose": "^5.11.8",
 "morgan": "^1.10.0", --> module used to log the requests
 "passport": "^0.4.1",

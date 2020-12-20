@@ -30,8 +30,13 @@ if(process.env.NODE_ENV === 'development'){
 
 }
 
+//HandleBars Helpers
+//These are functions that will be used in handlebars, offenly to format data to show to the user
+const {formatDate, stripTags, truncate} = require('./helpers/hbs')
+
+
 //Handlebars engine (template engine)
-app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
+app.engine('.hbs', exphbs({helpers:{formatDate,stripTags, truncate,},defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 //Sessions

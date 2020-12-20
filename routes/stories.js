@@ -22,4 +22,19 @@ router.post('/', ensureAuth, async (req,res) =>{
  }
 })
 
+//Show all Stories
+router.get('/', ensureAuth, async (req,res)=>{
+ try{
+  // populate let you reeference documents in other collections like a lookup
+  const stories = await Story.find({status: 'public'}).populate('user').sort({createdAt: 'desc'}).lean()
+  res.render('stories/index', {
+   stories,
+  })
+ }catch(err){
+  console.log(err);
+  res.render('erro/500')
+ }
+})
+
+
 module.exports = router
