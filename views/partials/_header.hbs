@@ -1,18 +1,13 @@
 <nav class="grey darken-3">
    <div class="nav-wrapper container">
       <form class=" hide-on-med-and-down right " id="form1" action="stories/search" method='get'>
-         {{!-- <div class="file-field input-field">
-            <div class="btn">
-               <span>File</span>
-               <input type="file">
-            </div> --}}
-            <div class="input-field" style="max-width: 400pt;">
-               <input id="search" type="search" required>
-               <label class="label-icon center" for="search"><button type="submit" value="Save"
-                     class='btn-flat transparent'><i class="material-icons icon">search</i></button></label>
-               <i class="material-icons">close</i>
-               <div id="searchResults"></div>
-            </div>
+         <div class="input-field" style="max-width: 400pt;">
+            <input id="search" type="search" name="search" required>
+            <label class="label-icon center" for="search"><button type="submit" class='btn-flat transparent'><i
+                     class="material-icons icon">search</i></button></label>
+            <i class="material-icons">close</i>
+            <div id="searchResults"></div>
+         </div>
       </form>
       <a href="#!" class="brand-logo center">StoryBooks</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger show-on-large"><i class="fas fa-bars"></i></a>
