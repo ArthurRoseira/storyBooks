@@ -10,6 +10,8 @@ router.get('/add', ensureAuth, (req, res) => {
 })
 
 router.get('/search', ensureAuth, (req, res) => {
+  var search = req.query['search'];
+  console.log(search)
   res.render('stories/search')
 })
 

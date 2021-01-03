@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
-const morgan = require ('morgan');
+const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const methodOverride = require('method-override');
 const connectDB = require('./config/db');
@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session)
 
 //Load Config File
-dotenv.config({path: './config/config.env'})
+dotenv.config({ path: './config/config.env' })
 process.env.NODE_ENV = 'development'
 //Passport Config 
 require('./config/passport')(passport)
@@ -21,7 +21,7 @@ connectDB()
 const app = express()
 
 //Body Parser
-app.use(express.urlencoded({ extended: false}))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.use(
@@ -37,8 +37,8 @@ app.use(
 
 // Using morgan to log the requests when in dev mode
 //using morgan MIddleware
-if(process.env.NODE_ENV === 'development'){
- app.use(morgan('dev'))
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
 
 }
 
@@ -76,7 +76,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  store: new MongoStore({ mongooseConnection: mongoose.connection})
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
 
@@ -85,7 +85,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 //set Global Var
-app.use(function (req, res,next){
+app.use(function (req, res, next) {
   //Creating a express global variable (res.locals.user, user is the name)
   //req.user is the logged user 
   res.locals.user = req.user || null
@@ -93,7 +93,7 @@ app.use(function (req, res,next){
 })
 
 //Static FOlder
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 
 app.use('/', require('./routes/index'))
