@@ -9,10 +9,17 @@ router.get('/add', ensureAuth, (req, res) => {
   res.render('stories/add')
 })
 
-router.get('/search', ensureAuth, (req, res) => {
+router.get('/search', ensureAuth, async (req, res) => {
   var search = req.query['search'];
-  console.log(search)
-  res.render('stories/search')
+  try {
+    const stories = await Story.find({ $text: { $search: `${search}` } }).populate('user').sort({ createdAt: 'desc' }).lean()
+    res.render('stories/index', {
+      stories,
+    })
+  } catch {
+    console.log(err);
+    res.render('error/500')
+  }
 })
 
 router.post('/', ensureAuth, async (req, res) => {

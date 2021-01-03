@@ -3,28 +3,30 @@ const mongoose = require('mongoose')
 
 //Each Schema maps to a MOndo DB collection and defines the shape of the documents within that collection
 const StorySchema = new mongoose.Schema({
- title:{
+ title: {
   type: String,
   require: true,
   trim: true
  },
- body:{
-  type:String,
+ body: {
+  type: String,
   require: true
  },
- status:{
-  type:String,
+ status: {
+  type: String,
   default: 'public',
-  enum:['public','private']
+  enum: ['public', 'private']
  },
- user:{
+ user: {
   type: mongoose.Schema.Types.ObjectId,
   ref: 'User'
  },
- createdAt:{
-  type:Date,
+ createdAt: {
+  type: Date,
   default: Date.now
  }
 })
+
+StorySchema.index({ title: "text", body: "text" })
 
 module.exports = mongoose.model('Story', StorySchema)
