@@ -21,3 +21,13 @@ p {
 .img-small {
   width: 180px;
 }
+
+
+.icon {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    width: 10px;
+    height: 10px;
+    display: block;
+}
