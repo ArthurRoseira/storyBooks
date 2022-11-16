@@ -22,23 +22,40 @@ OBS: Static folder servers can be used with template renderer modules
 
 Google OAuth Steps:
 To use the google OAuth is needed:
+
 --> Passport Module;
+
 --> express-session middleware to create a session in app.js
+
 --> Import passport module in app.js
+
 --> Implement two passport middlewares:
-->app.use(passport.initialize())
-app.use(passport.session())
+
+-->app.use(passport.initialize())
+    app.use(passport.session())
+
 --> Create a models folder and add an js file called User
+
 --> Import Mongoose and create a User Schema
+
 --> Create a passport.js file in config folder
+
 --> Import GoogleStrategy from passsport (See documentation in their page)
+
 --> Import Mongoos and store user in DB
+
 --> Use Google API authentication variables
+
 --> create a newUser
+
 --> Create de Route for authentication for '/google' and '/google/callback'
+
 --> Add app.use('/auth', require('./routes/auth')) into app.js
+
 --> Create middleware functions to protect routes
--> Add middleware folder and create ensureAuth and ensureGuest methods
+
+--> Add middleware folder and create ensureAuth and ensureGuest methods
+
 --> Store Session in DB using connect-mongo module
 
 OBS 2: When using Handlebars and You need to acess a variable out of the {{#each}} loop you will need to use ../, in
